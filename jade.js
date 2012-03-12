@@ -721,7 +721,7 @@ var Parser = require('./parser')
  * Library version.
  */
 
-exports.version = '0.20.3';
+exports.version = '0.21.0';
 
 /**
  * Expose self closing tags.
@@ -1187,7 +1187,7 @@ Lexer.prototype = {
    */
   
   "extends": function() {
-    return this.scan(/^extends +([^\n]+)/, 'extends');
+    return this.scan(/^extends? +([^\n]+)/, 'extends');
   },
 
   /**
@@ -2084,8 +2084,7 @@ var Node = require('./node');
 var Literal = module.exports = function Literal(str) {
   this.str = str
     .replace(/\\/g, "\\\\")
-    .replace(/\n/g, "\\n")
-    .replace(/\r/g, "\\r") 
+    .replace(/\n|\r\n/g, "\\n")
     .replace(/'/g, "\\'");
 };
 
